@@ -84,7 +84,7 @@ const ViewSurvey = () => {
                   </MDBCardBody>
                   <MDBCardFooter className="mt-2">
                     <Link to="/view-surveys">
-                      <MDBBtn style={{ backgroundColor: "#78909C" }}>
+                      <MDBBtn className="secondaryButton">
                         <MDBIcon
                           icon="undo"
                           size="sm"

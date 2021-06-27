@@ -52,7 +52,6 @@ export const GlobalStyles = createGlobalStyle`
       color: ${(props) => props.theme.fontColor};
   }
 
-  ${"" /* Circle */}
   .form-switch .form-check-input:after {
     background-color: #F5F5F5;
   }
@@ -60,38 +59,28 @@ export const GlobalStyles = createGlobalStyle`
     background-color: #F5F5F5;
   }
 
-
   .form-switch .form-check-input:checked[type=checkbox]:after {
     background-color: #34323D;
   }
+
   .form-switch .form-check-input:checked[type=checkbox]:focus:after {
     background-color: #34323D;
   }
 
-  ${"" /* Light Not Focused */}
   .form-switch .form-check-input {
     background-color: #34323D;
   }
 
-  ${"" /* Light Focused */}
   .form-switch .form-check-input:focus {
     background-color: #34323D;
   }
 
-  ${"" /* Dark Focused */}
   .form-check-input[type=checkbox]:checked:focus {
     background-color: #F5F5F5;
   }
 
-    ${"" /* Dark Not Focused */}
   .form-check-input[type=checkbox]:checked {
     background-color: #F5F5F5;
-  }
-
-  ${
-    "" /* .form-switch .form-check-input {
-
-  } */
   }
 
   div.card {

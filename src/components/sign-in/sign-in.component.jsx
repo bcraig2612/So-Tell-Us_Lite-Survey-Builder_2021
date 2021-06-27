@@ -28,7 +28,7 @@ const SignIn = () => {
     <MDBContainer>
       <MDBRow center>
         <MDBCol className="mt-2 px-1">
-          <MDBCard style={{ width: "100%", height: "95vh", border: "1px solid rgba(0,0,0,.125)", boxShadow: "0 10px 15px -3px rgba(0,0,0,0.2)" }}>
+          <MDBCard style={{ width: "100%" }}>
             <MDBCardTitle>
               <MDBTypography className="mt-2" variant="display-4">
                 Lite Survey Builder

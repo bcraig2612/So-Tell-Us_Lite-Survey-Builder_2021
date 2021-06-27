@@ -40,28 +40,15 @@ const ViewSurveys = () => {
     <MDBContainer>
       <MDBRow center>
         <MDBCol className="mt-2 px-1">
-          <MDBCard
-            className="align-items-center"
-            style={{
-              width: "100%",
-              border: "1px solid rgba(0,0,0,.125)",
-              boxShadow: "0 10px 15px -3px rgba(0,0,0,0.2)",
-            }}
-          >
-            <Header/>
+          <MDBCard className="align-items-center" style={{ width: "100%" }}>
+            <Header />
             <MDBTypography className="mt-2 mb-4" tag="h4" variant="display-4">
               My Surveys
             </MDBTypography>
             {surveys.length &&
               surveys.map((x, index) => (
                 <>
-                  <MDBCard
-                    className="mb-2"
-                    style={{
-                      width: "95%",
-                      border: "1px solid rgba(0,0,0,.125)",
-                    }}
-                  >
+                  <MDBCard className="mb-2" style={{ width: "95%" }}>
                     <MDBCardTitle className="mt-1">{x.name}</MDBCardTitle>
                     <MDBCardBody className="p-1 mb-1">
                       <Link

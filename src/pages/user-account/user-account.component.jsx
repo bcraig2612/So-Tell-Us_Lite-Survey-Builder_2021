@@ -118,7 +118,7 @@ const UserAccount = () => {
                 </MDBCardBody>
                 <MDBCardFooter className="d-flex justify-content-between mt-2 px-1 pb-0">
                   <MDBBtn
-                    className="m-2"
+                    className="primaryButton m-2"
                     size="sm"
                     onClick={() => updateAccountDetails()}
                     disabled={isFormValid()}
@@ -126,10 +126,7 @@ const UserAccount = () => {
                     Update Info
                   </MDBBtn>
                   <Link to="/view-surveys">
-                    <MDBBtn
-                      className="m-2"
-                      style={{ backgroundColor: "#78909C" }}
-                    >
+                    <MDBBtn className="secondaryButton m-2">
                       <MDBIcon
                         icon="undo"
                         size="sm"

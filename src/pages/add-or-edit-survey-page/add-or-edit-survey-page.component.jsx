@@ -199,7 +199,7 @@ const AddOrEditSurvey = () => {
                 boxShadow: "0 10px 15px -3px rgba(0,0,0,0.2)",
               }}
             >
-            <Header />
+              <Header />
               {edit ? (
                 <>
                   <MDBTypography
@@ -245,16 +245,16 @@ const AddOrEditSurvey = () => {
                               }}
                             >
                               <MDBIcon
+                                className="secondaryIcon"
                                 icon="caret-square-up"
-                                style={{ color: "#78909C" }}
                                 onClick={() =>
                                   handleQuestionMovement("up", index)
                                 }
                                 disabled={index === 0}
                               ></MDBIcon>
                               <MDBIcon
+                                className="secondaryIcon"
                                 icon="caret-square-down"
-                                style={{ color: "#78909C" }}
                                 onClick={() =>
                                   handleQuestionMovement("down", index)
                                 }
@@ -275,9 +275,9 @@ const AddOrEditSurvey = () => {
                               style={{ height: "35px" }}
                             >
                               <MDBBtn
+                                className="tertiaryButton"
                                 size="sm"
                                 floating
-                                color="danger"
                                 onClick={() => handleQuestionRemoval(index)}
                               >
                                 <MDBIcon icon="minus" size="sm"></MDBIcon>
@@ -332,28 +332,25 @@ const AddOrEditSurvey = () => {
                       </div>
                       <MDBCol className="d-flex justify-content-between">
                         <MDBBtn
-                          className="inputOption"
+                          className="secondaryButton inputOption"
                           size="sm"
                           value="text"
-                          style={{ backgroundColor: "#78909C" }}
                           onClick={(e) => setDraftType(e.target.value)}
                         >
                           Text Field
                         </MDBBtn>
                         <MDBBtn
-                          className="inputOption"
+                          className="secondaryButton inputOption"
                           size="sm"
                           value="dropdown"
-                          style={{ backgroundColor: "#78909C" }}
                           onClick={(e) => setDraftType(e.target.value)}
                         >
                           Select
                         </MDBBtn>
                         <MDBBtn
-                          className="inputOption"
+                          className="secondaryButton inputOption"
                           size="sm"
                           value="checkbox"
-                          style={{ backgroundColor: "#78909C" }}
                           onClick={(e) => setDraftType(e.target.value)}
                         >
                           Checkbox
@@ -375,16 +372,16 @@ const AddOrEditSurvey = () => {
                                     }}
                                   >
                                     <MDBIcon
+                                      className="secondaryIcon"
                                       icon="caret-square-up"
-                                      style={{ color: "#78909C" }}
                                       onClick={() =>
                                         handleChoiceMovement("up", index)
                                       }
                                       disabled={index === 0}
                                     ></MDBIcon>
                                     <MDBIcon
+                                      className="secondaryIcon"
                                       icon="caret-square-down"
-                                      style={{ color: "#78909C" }}
                                       onClick={() =>
                                         handleChoiceMovement("down", index)
                                       }
@@ -411,9 +408,9 @@ const AddOrEditSurvey = () => {
                                     style={{ height: "35px" }}
                                   >
                                     <MDBBtn
+                                      className="tertiaryButton"
                                       size="sm"
                                       floating
-                                      color="danger"
                                       onClick={() => handleChoiceRemoval(index)}
                                     >
                                       <MDBIcon icon="minus" size="sm"></MDBIcon>
@@ -424,8 +421,8 @@ const AddOrEditSurvey = () => {
                               <div className="d-flex mt-2 mb-1">
                                 {index + 1 === draftChoices.length && (
                                   <MDBBtn
+                                    className="quaternaryButton"
                                     size="sm"
-                                    color="success"
                                     onClick={() => handleChoiceAddition()}
                                   >
                                     <MDBIcon
@@ -446,8 +443,8 @@ const AddOrEditSurvey = () => {
                     </MDBCardBody>
                     <MDBCardFooter className="d-flex justify-content-between mt-2 px-1">
                       <MDBBtn
+                        className="quaternaryButton"
                         size="sm"
-                        color="success"
                         disabled={isDraftValid()}
                         onClick={() => submitQuestion()}
                       >
@@ -459,6 +456,7 @@ const AddOrEditSurvey = () => {
                         <span className="form-text text-white">Add Entry</span>
                       </MDBBtn>
                       <MDBBtn
+                        className="primaryButton"
                         type="submit"
                         disabled={isSurveyValid()}
                         onClick={() => updateSurvey()}
@@ -478,6 +476,7 @@ const AddOrEditSurvey = () => {
               ) : (
                 <>
                   <MDBTypography
+                    id="createSurvey"
                     className="mt-2 mb-4"
                     tag="h4"
                     variant="display-4"
@@ -496,6 +495,7 @@ const AddOrEditSurvey = () => {
                     <MDBCardBody className="p-1">
                       <div>
                         <MDBInput
+                          className="createInputSurveyName"
                           label="Survey Name"
                           wrapperClass="col-12 mb-3"
                           type="text"
@@ -523,6 +523,7 @@ const AddOrEditSurvey = () => {
                         : null}
                       <div className="mb-2">
                         <MDBInput
+                          className="createInputQuestionName"
                           label="Question Name"
                           wrapperClass="col-12 mb-2"
                           type="text"
@@ -532,28 +533,25 @@ const AddOrEditSurvey = () => {
                       </div>
                       <MDBCol className="d-flex justify-content-between">
                         <MDBBtn
-                          className="inputOption"
+                          className="secondaryButton inputOption"
                           size="sm"
                           value="text"
-                          style={{ backgroundColor: "#78909C" }}
                           onClick={(e) => setDraftType(e.target.value)}
                         >
                           Text Field
                         </MDBBtn>
                         <MDBBtn
-                          className="inputOption"
+                          className="secondaryButton inputOption"
                           size="sm"
                           value="dropdown"
-                          style={{ backgroundColor: "#78909C" }}
                           onClick={(e) => setDraftType(e.target.value)}
                         >
                           Select
                         </MDBBtn>
                         <MDBBtn
-                          className="inputOption"
+                          className="secondaryButton inputOption"
                           size="sm"
                           value="checkbox"
-                          style={{ backgroundColor: "#78909C" }}
                           onClick={(e) => setDraftType(e.target.value)}
                         >
                           Checkbox
@@ -575,16 +573,16 @@ const AddOrEditSurvey = () => {
                                     }}
                                   >
                                     <MDBIcon
+                                      className="secondaryIcon"
                                       icon="caret-square-up"
-                                      style={{ color: "#78909C" }}
                                       onClick={() =>
                                         handleChoiceMovement("up", index)
                                       }
                                       disabled={index === 0}
                                     ></MDBIcon>
                                     <MDBIcon
+                                      className="secondaryIcon"
                                       icon="caret-square-down"
-                                      style={{ color: "#78909C" }}
                                       onClick={() =>
                                         handleChoiceMovement("down", index)
                                       }
@@ -611,9 +609,9 @@ const AddOrEditSurvey = () => {
                                     style={{ height: "35px" }}
                                   >
                                     <MDBBtn
+                                      className="tertiaryButton"
                                       size="sm"
                                       floating
-                                      color="danger"
                                       onClick={() => handleChoiceRemoval(index)}
                                     >
                                       <MDBIcon icon="minus" size="sm"></MDBIcon>
@@ -624,8 +622,8 @@ const AddOrEditSurvey = () => {
                               <div className="d-flex mt-2 mb-1">
                                 {index + 1 === draftChoices.length && (
                                   <MDBBtn
+                                    className="quaternaryButton"
                                     size="sm"
-                                    color="success"
                                     onClick={() => handleChoiceAddition()}
                                   >
                                     <MDBIcon
@@ -646,8 +644,8 @@ const AddOrEditSurvey = () => {
                     </MDBCardBody>
                     <MDBCardFooter className="d-flex justify-content-between mt-2 px-1">
                       <MDBBtn
+                        className="quaternaryButton"
                         size="sm"
-                        color="success"
                         disabled={isDraftValid()}
                         onClick={() => submitQuestion()}
                       >
@@ -660,6 +658,7 @@ const AddOrEditSurvey = () => {
                       </MDBBtn>
 
                       <MDBBtn
+                        className="primaryButton"
                         type="submit"
                         disabled={isSurveyValid()}
                         onClick={() => submitSurvey()}
@@ -678,7 +677,7 @@ const AddOrEditSurvey = () => {
                 </>
               )}
               <Link to="/view-surveys">
-                <MDBBtn className="m-2" style={{ backgroundColor: "#78909C" }}>
+                <MDBBtn className="secondaryButton m-2">
                   <MDBIcon
                     icon="undo"
                     size="sm"

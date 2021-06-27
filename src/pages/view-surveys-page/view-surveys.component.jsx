@@ -55,7 +55,7 @@ const ViewSurveys = () => {
                         to={`/view-survey?id=${x.id}`}
                         key={`view_${index}`}
                       >
-                        <MDBBtn floating className="m-1" color="primary">
+                        <MDBBtn floating className="primaryButton m-1">
                           <MDBIcon icon="eye" size="lg" />
                         </MDBBtn>
                       </Link>
@@ -65,16 +65,15 @@ const ViewSurveys = () => {
                       >
                         <MDBBtn
                           floating
-                          className="m-1"
+                          className="secondaryButton m-1"
                           style={{
-                            backgroundColor: "#78909C",
                             paddingLeft: "3px",
                           }}
                         >
                           <MDBIcon icon="edit" size="lg" />
                         </MDBBtn>
                       </Link>
-                      <MDBBtn floating className="m-1" color="danger">
+                      <MDBBtn floating className="tertiaryButton m-1">
                         <MDBIcon far icon="trash-alt" size="lg" />
                       </MDBBtn>
                     </MDBCardBody>
@@ -82,7 +81,7 @@ const ViewSurveys = () => {
                 </>
               ))}
             <Link to="/add-or-edit-survey">
-              <MDBBtn className="mx-1 my-3" color="success">
+              <MDBBtn className="quaternaryButton mx-1 my-3">
                 <MDBIcon className="mx-1" icon="plus" size="sm" />
                 Add Survey
               </MDBBtn>

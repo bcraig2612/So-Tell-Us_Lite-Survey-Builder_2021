@@ -11,7 +11,7 @@ import {
   MDBCardTitle,
   MDBCol,
   MDBContainer,
-  MDBRow
+  MDBRow,
 } from "mdb-react-ui-kit";
 
 const SignIn = () => {
@@ -54,7 +54,13 @@ const SignIn = () => {
                 />
                 <div>
                   <Link to="/view-surveys">
-                    <MDBBtn type="submit" style={{ width: "50%" }}>Sign in</MDBBtn>
+                    <MDBBtn
+                      className="primaryButton"
+                      type="submit"
+                      style={{ width: "50%" }}
+                    >
+                      Sign in
+                    </MDBBtn>
                   </Link>
                 </div>
               </form>

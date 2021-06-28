@@ -19,8 +19,13 @@ import {
   MDBIcon,
 } from "mdb-react-ui-kit";
 
+import { useHistory } from "react-router-dom";
+
 const ViewSurvey = () => {
   const [survey, setSurvey] = useState(null);
+  const [answers, setAnswers] = useState(null);
+
+  const history = useHistory();
 
   useEffect(() => {
     let localSurveys = localStorage.surveys;
@@ -33,10 +38,75 @@ const ViewSurvey = () => {
     localSurveys.map((s) => {
       if (s.id === id) {
         setSurvey(s);
+        setAnswers(s);
       }
     });
   }, []);
+  console.log(survey);
 
+  const handleAnswerInput = (e, index) => {
+    console.log(e, index);
+    let stateCopy = answers;
+
+    stateCopy.elements[index].answer = e;
+
+    setAnswers({ ...stateCopy });
+  };
+
+  const handleCheckboxChange = (e, index, chIndex) => {
+    let stateCopy = answers;
+
+    if (
+      stateCopy.elements[index].answer &&
+      stateCopy.elements[index].answer.length
+    ) {
+      let usedIndexes = [];
+      stateCopy.elements[index].answer.map((x) => {
+        usedIndexes.push(x.index);
+      });
+      if (usedIndexes.includes(chIndex)) {
+        stateCopy.elements[index].answer = stateCopy.elements[
+          index
+        ].answer.filter((x) => x.index !== chIndex);
+      } else {
+        stateCopy.elements[index].answer.push({ choice: e, index: chIndex });
+      }
+    } else {
+      stateCopy.elements[index].answer = [{ choice: e, index: chIndex }];
+    }
+
+    setAnswers({ ...stateCopy });
+  };
+
+  const isFormValid = () => {
+    let incomplete = 0;
+    answers.elements.map((x) => {
+      if (!x.answer || !x.answer.length) {
+        incomplete++;
+      }
+    });
+    if (incomplete > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  const submitAnsweredSurvey = () => {
+    let localAnsweredSurveys = localStorage.answeredSurveys;
+
+    if (localAnsweredSurveys === undefined) {
+      let surveyObj = [];
+      surveyObj.push(answers)
+      localStorage.setItem("answeredSurveys", JSON.stringify(surveyObj));
+    } else {
+      let surveyObj = JSON.parse(localAnsweredSurveys);
+      surveyObj.push(answers);
+      localStorage.setItem("answeredSurveys", JSON.stringify(surveyObj));
+    }
+
+    history.push("/view-submitted-surveys");
+  };
   return (
     <>
       {survey && (
@@ -76,39 +146,55 @@ const ViewSurvey = () => {
                         ) : null}
                         {el.type === "text" ? (
                           <div className="mb-4">
-                            <MDBInput type="text" />
+                            <MDBInput
+                              type="text"
+                              onChange={(e) =>
+                                handleAnswerInput(e.target.value, index)
+                              }
+                            />
                           </div>
                         ) : el.type === "checkbox" ? (
                           <div
                             className="mb-4"
                             style={{ textAlign: "initial" }}
                           >
-                            <Checkbox choices={el.choices} />
+                            <Checkbox
+                              choices={el.choices}
+                              idx={index}
+                              handleChange={handleCheckboxChange}
+                            />
                           </div>
                         ) : el.type === "dropdown" ? (
                           <div
                             className="mb-4"
                             style={{ textAlign: "initial" }}
                           >
-                            <Dropdown choices={el.choices} />
+                            <Dropdown
+                              choices={el.choices}
+                              idx={index}
+                              handleChange={handleAnswerInput}
+                            />
                           </div>
                         ) : null}
                       </div>
                     ))}
                   </MDBCardBody>
                   <MDBCardFooter className="mt-2 px-1">
-                    <Link to="/view-submitted-surveys">
-                      <MDBBtn className="primaryButton" type="submit">
-                        <MDBIcon
-                          icon="check-double"
-                          size="sm"
-                          style={{ marginRight: "6px" }}
-                        ></MDBIcon>
-                        <span className="form-text text-white">
-                          Submit Survey
-                        </span>
-                      </MDBBtn>
-                    </Link>
+                    <MDBBtn
+                      className="primaryButton"
+                      type="submit"
+                      disabled={isFormValid()}
+                      onClick={() => submitAnsweredSurvey()}
+                    >
+                      <MDBIcon
+                        icon="check-double"
+                        size="sm"
+                        style={{ marginRight: "6px" }}
+                      ></MDBIcon>
+                      <span className="form-text text-white">
+                        Submit Survey
+                      </span>
+                    </MDBBtn>
                   </MDBCardFooter>
                 </MDBCard>
                 <Link to="/view-surveys">
@@ -130,7 +216,7 @@ const ViewSurvey = () => {
   );
 };
 
-const Checkbox = ({ choices }) => {
+const Checkbox = ({ choices, handleChange, idx }) => {
   return (
     <>
       {choices.map((ch, index) => (
@@ -140,16 +226,17 @@ const Checkbox = ({ choices }) => {
           value={ch}
           label={ch}
           key={index}
+          onChange={(e) => handleChange(e.target.value, idx, index)}
         />
       ))}
     </>
   );
 };
 
-const Dropdown = ({ choices }) => {
+const Dropdown = ({ choices, handleChange, idx }) => {
   return (
     <>
-      <select>
+      <select onChange={(e) => handleChange(e.target.value, idx)}>
         <option value=""></option>
         {choices.map((ch, index) => (
           <option value={ch} key={index}>

@@ -17,6 +17,7 @@ import {
   MDBCardBody,
   MDBCardTitle,
   MDBTypography,
+  MDBCardFooter,
 } from "mdb-react-ui-kit";
 
 const ViewSurveys = () => {
@@ -81,12 +82,26 @@ const ViewSurveys = () => {
                   </MDBCard>
                 </>
               ))}
-            <Link to="/add-or-edit-survey">
-              <MDBBtn className="quaternaryButton mx-1 my-3">
-                <MDBIcon className="mx-1" icon="plus" size="sm" />
-                Add Survey
-              </MDBBtn>
-            </Link>
+            <MDBCardFooter className="d-flex w-100 justify-content-around mt-2 px-1">
+              <Link to="/add-or-edit-survey">
+                <MDBBtn className="quaternaryButton" size="sm">
+                  <MDBIcon className="mx-1" icon="plus" size="sm" />
+                  Add Survey
+                </MDBBtn>
+              </Link>
+              <Link to="/view-submitted-surveys">
+                <MDBBtn className="primaryButton" size="sm">
+                  <MDBIcon
+                    icon="eye"
+                    size="sm"
+                    style={{ marginRight: "6px" }}
+                  ></MDBIcon>
+                  <span className="form-text text-white">
+                    Submitted Surveys
+                  </span>
+                </MDBBtn>
+              </Link>
+            </MDBCardFooter>
           </MDBCard>
         </MDBCol>
       </MDBRow>

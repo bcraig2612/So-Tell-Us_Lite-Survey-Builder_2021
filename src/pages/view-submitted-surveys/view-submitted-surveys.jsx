@@ -3,14 +3,13 @@ import { Link } from "react-router-dom";
 
 import Header from "../../components/header/header.component";
 
-import { surveyObj } from "../../utils/survey.data";
-import { userObj } from "../../utils/user.data";
-
 import {
   MDBIcon,
   MDBBtn,
   MDBRow,
+  MDBInput,
   MDBContainer,
+  MDBCheckbox,
   MDBCol,
   MDBCard,
   MDBCardBody,
@@ -19,6 +18,18 @@ import {
 } from "mdb-react-ui-kit";
 
 const SubmittedSurveys = () => {
+  const [submittedSurveys, setSubmittedSurveys] = useState([]);
+
+  useEffect(() => {
+    let localAnsweredSurveys = localStorage.answeredSurveys;
+
+    if (localAnsweredSurveys !== undefined) {
+      setSubmittedSurveys(JSON.parse(localAnsweredSurveys));
+    }
+
+  }, []);
+
+  console.log(submittedSurveys);
   return (
     <MDBContainer>
       <MDBRow center>
@@ -28,9 +39,53 @@ const SubmittedSurveys = () => {
             <MDBTypography className="mt-2 mb-4" tag="h4" variant="display-4">
               Submitted Surveys
             </MDBTypography>
-            <MDBCard className="mb-2" style={{ width: "95%" }}>
-              Hello World
-            </MDBCard>
+            {submittedSurveys.length && submittedSurveys.map((x, index) => (
+              <>
+                <MDBCard className="mb-2" style={{ width: "95%" }}>
+                  <MDBCardTitle className="mt-1">{x.name}</MDBCardTitle>
+                  <MDBCardBody className="p-1 mb-1">
+                    {x.elements.map((x, index) => (
+                      <>
+                        <div className="mb-3">
+                          {x.name ? (
+                            <div className="form-text mb-1">{x.name}</div>
+                          ) : null}
+                        {x.type === "text" ? (
+                          <div className="mb-4">
+                            <MDBInput
+                              type="text"
+                              value={x.answer}
+                              disabled
+                            />
+                          </div>
+                        ) : x.type === "checkbox" ? (
+                          <div
+                            className="mb-4"
+                            style={{ textAlign: "initial" }}
+                          >
+                            <Checkbox
+                              choices={x.choices}
+                              idx={index}
+                            />
+                          </div>
+                        ) : x.type === "dropdown" ? (
+                          <div
+                            className="mb-4"
+                            style={{ textAlign: "initial" }}
+                          >
+                            <Dropdown
+                              choices={x.choices}
+                              idx={index}
+                            />
+                          </div>
+                        ) : null}
+                        </div>
+                      </>
+                    ))}
+                  </MDBCardBody>
+                </MDBCard>
+              </>
+            ))}
           </MDBCard>
           <Link to="/view-surveys">
             <MDBBtn id="secondaryButton" className="m-2">
@@ -41,6 +96,38 @@ const SubmittedSurveys = () => {
         </MDBCol>
       </MDBRow>
     </MDBContainer>
+  );
+};
+
+const Checkbox = ({ choices }) => {
+  return (
+    <>
+      {choices.map((ch, index) => (
+        <MDBCheckbox
+          name="flexCheck"
+          type="checkbox"
+          value={ch}
+          label={ch}
+          key={index}
+          disabled
+        />
+      ))}
+    </>
+  );
+};
+
+const Dropdown = ({ choices }) => {
+  return (
+    <>
+      <select disabled>
+        <option value=""></option>
+        {choices.map((ch, index) => (
+          <option value={ch} key={index}>
+            {ch}
+          </option>
+        ))}
+      </select>
+    </>
   );
 };
 

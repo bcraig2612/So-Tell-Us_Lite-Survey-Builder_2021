@@ -52,34 +52,34 @@ export const GlobalStyles = createGlobalStyle`
       color: ${(props) => props.theme.fontColor};
   }
 
-  .form-switch .form-check-input:after {
+  .form-switch #darkModeToggle:after {
     background-color: #F5F5F5;
   }
-  .form-check-input[type=checkbox]:focus:after {
-    background-color: #F5F5F5;
-  }
-
-  .form-switch .form-check-input:checked[type=checkbox]:after {
-    background-color: #34323D;
-  }
-
-  .form-switch .form-check-input:checked[type=checkbox]:focus:after {
-    background-color: #34323D;
-  }
-
-  .form-switch .form-check-input {
-    background-color: #34323D;
-  }
-
-  .form-switch .form-check-input:focus {
-    background-color: #34323D;
-  }
-
-  .form-check-input[type=checkbox]:checked:focus {
+  #darkModeToggle[type=checkbox]:focus:after {
     background-color: #F5F5F5;
   }
 
-  .form-check-input[type=checkbox]:checked {
+  .form-switch #darkModeToggle:checked[type=checkbox]:after {
+    background-color: #34323D;
+  }
+
+  .form-switch #darkModeToggle:checked[type=checkbox]:focus:after {
+    background-color: #34323D;
+  }
+
+  .form-switch #darkModeToggle {
+    background-color: #34323D;
+  }
+
+  .form-switch #darkModeToggle:focus {
+    background-color: #34323D;
+  }
+
+  #darkModeToggle[type=checkbox]:checked:focus {
+    background-color: #F5F5F5;
+  }
+
+  #darkModeToggle[type=checkbox]:checked {
     background-color: #F5F5F5;
   }
 
@@ -167,4 +167,14 @@ export const GlobalStyles = createGlobalStyle`
       color: ${(props) => props.theme.formLabelColor};
     }
   }
+
+  #secondaryButton {
+    background-color: ${(props) =>
+      props.theme.secondaryButtonBackgroundColor};
+
+    &:hover {
+      background-color: ${(props) =>
+        props.theme.secondaryButtonHoverBackgroundColor};
+      }
+    }
 `;

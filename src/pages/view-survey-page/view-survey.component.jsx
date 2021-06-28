@@ -51,7 +51,7 @@ const ViewSurvey = () => {
                   boxShadow: "0 10px 15px -3px rgba(0,0,0,0.2)",
                 }}
               >
-              <Header/>
+                <Header />
                 <MDBTypography
                   className="mt-2 mb-4"
                   tag="h4"
@@ -61,7 +61,11 @@ const ViewSurvey = () => {
                 </MDBTypography>
                 <MDBCard
                   className="mb-2"
-                  style={{ width: "95%", padding: "7px", border: "1px solid rgba(0,0,0,.125)" }}
+                  style={{
+                    width: "95%",
+                    padding: "7px",
+                    border: "1px solid rgba(0,0,0,.125)",
+                  }}
                 >
                   <MDBCardTitle className="mt-1">{survey.name}</MDBCardTitle>
                   <MDBCardBody className="p-1">
@@ -71,30 +75,52 @@ const ViewSurvey = () => {
                           <div className="form-text mb-1">{el.name}</div>
                         ) : null}
                         {el.type === "text" ? (
-                          <MDBInput type="text" />
+                          <div className="mb-4">
+                            <MDBInput type="text" />
+                          </div>
                         ) : el.type === "checkbox" ? (
-                          <div style={{ textAlign: "initial" }}>
-                          <Checkbox choices={el.choices} />
+                          <div
+                            className="mb-4"
+                            style={{ textAlign: "initial" }}
+                          >
+                            <Checkbox choices={el.choices} />
                           </div>
                         ) : el.type === "dropdown" ? (
-                          <Dropdown choices={el.choices} />
+                          <div
+                            className="mb-4"
+                            style={{ textAlign: "initial" }}
+                          >
+                            <Dropdown choices={el.choices} />
+                          </div>
                         ) : null}
                       </div>
                     ))}
                   </MDBCardBody>
-                  <MDBCardFooter className="mt-2">
-                    <Link to="/view-surveys">
-                      <MDBBtn className="secondaryButton">
+                  <MDBCardFooter className="mt-2 px-1">
+                    <Link to="/view-submitted-surveys">
+                      <MDBBtn className="primaryButton" type="submit">
                         <MDBIcon
-                          icon="undo"
+                          icon="check-double"
                           size="sm"
                           style={{ marginRight: "6px" }}
-                        />
-                        View Surveys
+                        ></MDBIcon>
+                        <span className="form-text text-white">
+                          Submit Survey
+                        </span>
                       </MDBBtn>
                     </Link>
                   </MDBCardFooter>
                 </MDBCard>
+                <Link to="/view-surveys">
+                  <MDBBtn className="secondaryButton m-2">
+                    <MDBIcon
+                      icon="undo"
+                      size="sm"
+                      style={{ marginRight: "6px" }}
+                    />
+                    View Surveys
+                  </MDBBtn>
+                </Link>
               </MDBCard>
             </MDBCol>
           </MDBRow>
@@ -108,13 +134,13 @@ const Checkbox = ({ choices }) => {
   return (
     <>
       {choices.map((ch, index) => (
-          <MDBCheckbox
-            name="flexCheck"
-            type="checkbox"
-            value={ch}
-            label={ch}
-            key={index}
-          />
+        <MDBCheckbox
+          name="flexCheck"
+          type="checkbox"
+          value={ch}
+          label={ch}
+          key={index}
+        />
       ))}
     </>
   );

@@ -669,7 +669,7 @@ const AddOrEditSurvey = () => {
                           style={{ marginRight: "6px" }}
                         ></MDBIcon>
                         <span className="form-text text-white">
-                          Submit Survey
+                          Create Survey
                         </span>
                       </MDBBtn>
                     </MDBCardFooter>

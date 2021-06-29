@@ -2,6 +2,7 @@ import { createGlobalStyle } from "styled-components";
 
 export const lightTheme = {
   backgroundColor: "#FFFFFF",
+  secondaryBackgroundColor: "#F9F6F6",
   fontColor: "#000000",
   buttonTextColor: "#F5F5F5",
   formTextColor: "#757575",
@@ -11,6 +12,7 @@ export const lightTheme = {
   border: "1px solid rgb(0, 0, 0, 0.125)",
   boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.2)",
   primaryButtonBackgroundColor: "#1266F1",
+  primaryIconBackgroundColor: "#1266F1",
   primaryButtonHoverBackgroundColor: "#0C56D0",
   primaryButtonDisabledBackgroundColor: "#4F8DF5",
   secondaryButtonBackgroundColor: "#78909C",
@@ -19,12 +21,14 @@ export const lightTheme = {
   tertiaryButtonBackgroundColor: "#FF3855",
   tertiaryButtonHoverBackgroundColor: "#F90024",
   quaternaryButtonBackgroundColor: "#00B74A",
+  quaternaryIconBackgroundColor: "#00B74A",
   quaternaryButtonHoverBackgroundColor: "#00913B",
   quaternaryButtonDisabledBackgroundColor: "#00E55D",
 };
 
 export const darkTheme = {
   backgroundColor: "#101416",
+  secondaryBackgroundColor: "#292929",
   fontColor: "#F5F5F5",
   buttonTextColor: "#F5F5F5",
   formTextColor: "#F5F5F5",
@@ -34,6 +38,7 @@ export const darkTheme = {
   border: "1px solid rgb(245, 245, 245, 0.25)",
   boxShadow: "0 10px 15px -3px rgba(245, 245, 245,0.2)",
   primaryButtonBackgroundColor: "#4F8DF5",
+  primaryIconBackgroundColor: "#4F8DF5",
   primaryButtonHoverBackgroundColor: "#1266F1",
   primaryButtonDisabledBackgroundColor: "#9CBFF9",
   secondaryButtonBackgroundColor: "#A0B1B9",
@@ -42,6 +47,7 @@ export const darkTheme = {
   tertiaryButtonBackgroundColor: "#FF8697",
   tertiaryButtonHoverBackgroundColor: "#FF3855",
   quaternaryButtonBackgroundColor: "#00E55D",
+  quaternaryIconBackgroundColor: "#00E55D",
   quaternaryButtonHoverBackgroundColor: "#00B74A",
   quaternaryButtonDisabledBackgroundColor: "#1FFF7A",
 };
@@ -55,6 +61,7 @@ export const GlobalStyles = createGlobalStyle`
   .form-switch #darkModeToggle:after {
     background-color: #F5F5F5;
   }
+
   #darkModeToggle[type=checkbox]:focus:after {
     background-color: #F5F5F5;
   }
@@ -103,8 +110,16 @@ export const GlobalStyles = createGlobalStyle`
       padding-right: 0px;
     }
 
+    .primaryIcon {
+      color: ${(props) => props.theme.primaryIconBackgroundColor};
+    }
+
     .secondaryIcon {
       color: ${(props) => props.theme.secondaryIconBackgroundColor};
+    }
+
+    .quaternaryIcon {
+      color: ${(props) => props.theme.quaternaryIconBackgroundColor};
     }
 
     button {
@@ -165,6 +180,14 @@ export const GlobalStyles = createGlobalStyle`
 
     .form-outline .form-control~.form-label {
       color: ${(props) => props.theme.formLabelColor};
+    }
+  }
+
+  div.submittedSurvey {
+    background-color: ${(props) => props.theme.secondaryBackgroundColor} !important;
+
+    .card {
+      box-shadow: none !important;
     }
   }
 

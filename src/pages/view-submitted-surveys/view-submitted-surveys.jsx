@@ -7,9 +7,8 @@ import {
   MDBIcon,
   MDBBtn,
   MDBRow,
-  MDBInput,
   MDBContainer,
-  MDBCheckbox,
+  MDBBadge,
   MDBCol,
   MDBCard,
   MDBCardBody,
@@ -31,22 +30,6 @@ const SubmittedSurveys = () => {
 
   console.log(submittedSurveys);
 
-  submittedSurveys.map(function(x, i) {
-    x.elements.map(function(x, i) {
-      if(x.type === "checkbox") {
-        const result = x.answer.map(({ choice }) => choice);
-        const objMap={};
-
-        result.forEach((e1)=>x.choices.forEach((e2)=> {if(e1 === e2){
-          objMap[e1]=objMap[e1]+1||1;
-        }}));
-
-        let answerArr = Object.keys(objMap).map(e=>String(e));
-        console.log(answerArr);
-      }
-    });
-  });
-
   return (
     <MDBContainer>
       <MDBRow center>
@@ -55,51 +38,42 @@ const SubmittedSurveys = () => {
             <Header />
             <MDBTypography className="mt-2 mb-4" tag="h4" variant="display-4">
               Submitted Surveys
+              <p className="mb-0" style={{ fontSize: "12px" }}><MDBIcon className="primaryIcon ms-1" icon="comment" size="sm" />&nbsp;-&nbsp;Text&nbsp;&nbsp;<MDBIcon className="primaryIcon ms-1" icon="check-circle" size="sm" />&nbsp;-&nbsp;Checkbox&nbsp;&nbsp;<MDBIcon className="primaryIcon ms-1" icon="hand-pointer" size="sm" />&nbsp;-&nbsp;Dropdown</p>
             </MDBTypography>
             {submittedSurveys.length && submittedSurveys.map((x, index) => (
               <>
-                <MDBCard className="mb-4" style={{ width: "95%" }}>
+                <MDBCard className="submittedSurvey align-items-center mb-4" style={{ width: "95%" }}>
                   <MDBCardTitle className="mt-1">{x.name}</MDBCardTitle>
-                  <MDBCardBody className="p-1 mb-1">
                     {x.elements.map((x, index) => (
                       <>
-                        <div className="mb-3">
-                          {x.name ? (
-                            <div className="form-text mb-1">{x.name}</div>
-                          ) : null}
+                      <MDBCard className="mb-3" style={{ width: "95%" }}>
+                        <MDBCardBody className="p-1 mb-1">
+                        <div>
+                            {x.name && x.type === "text" ? (
+                              <div className="form-text mb-1"><MDBIcon className="primaryIcon ms-1" icon="comment" size="sm" />&nbsp;{x.name}</div>
+                              ) : x.name && x.type === "checkbox" ? (
+                                <div className="form-text mb-1"><MDBIcon className="primaryIcon ms-1" icon="check-circle" size="sm" />&nbsp;{x.name}</div>
+                                ) : x.name && x.type === "dropdown" ? (
+                                  <div className="form-text mb-1"><MDBIcon className="primaryIcon ms-1" icon="hand-pointer" size="sm" />&nbsp;{x.name}</div>
+                                  ) : null}
                         {x.type === "text" ? (
-                          <div className="mb-4">
-                            <MDBInput
-                              type="text"
-                              value={x.answer}
-                              disabled
-                            />
+                          <div className="mb-1">
+                            {x.answer}
                           </div>
                         ) : x.type === "checkbox" ? (
-                          <div
-                            className="mb-4"
-                            style={{ textAlign: "initial" }}
-                          >
-                            <Checkbox
-                              choices={x.choices}
-                              idx={index}
-                            />
+                          <div className="mb-1">
+                            {x.answer.map(({ choice }) => <p className="mb-1">{choice}</p>)}
                           </div>
                         ) : x.type === "dropdown" ? (
-                          <div
-                            className="mb-4"
-                            style={{ textAlign: "initial" }}
-                          >
-                            <Dropdown
-                              choices={x.choices}
-                              idx={index}
-                            />
+                          <div className="mb-1">
+                            <p className="mb-1">{x.answer}</p>
                           </div>
                         ) : null}
                         </div>
+                        </MDBCardBody>
+                        </MDBCard>
                       </>
                     ))}
-                  </MDBCardBody>
                 </MDBCard>
               </>
             ))}
@@ -113,38 +87,6 @@ const SubmittedSurveys = () => {
         </MDBCol>
       </MDBRow>
     </MDBContainer>
-  );
-};
-
-const Checkbox = ({ choices }) => {
-  return (
-    <>
-      {choices.map((ch, index) => (
-        <MDBCheckbox
-          name="flexCheck"
-          type="checkbox"
-          value={ch}
-          label={ch}
-          key={index}
-          disabled
-        />
-      ))}
-    </>
-  );
-};
-
-const Dropdown = ({ choices }) => {
-  return (
-    <>
-      <select disabled>
-        <option value=""></option>
-        {choices.map((ch, index) => (
-          <option value={ch} key={index}>
-            {ch}
-          </option>
-        ))}
-      </select>
-    </>
   );
 };
 

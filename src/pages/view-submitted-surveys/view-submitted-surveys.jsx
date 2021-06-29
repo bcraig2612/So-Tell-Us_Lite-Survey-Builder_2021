@@ -30,18 +30,35 @@ const SubmittedSurveys = () => {
   }, []);
 
   console.log(submittedSurveys);
+
+  submittedSurveys.map(function(x, i) {
+    x.elements.map(function(x, i) {
+      if(x.type === "checkbox") {
+        const result = x.answer.map(({ choice }) => choice);
+        const objMap={};
+
+        result.forEach((e1)=>x.choices.forEach((e2)=> {if(e1 === e2){
+          objMap[e1]=objMap[e1]+1||1;
+        }}));
+
+        let answerArr = Object.keys(objMap).map(e=>String(e));
+        console.log(answerArr);
+      }
+    });
+  });
+
   return (
     <MDBContainer>
       <MDBRow center>
         <MDBCol className="mt-2 px-1">
-          <MDBCard className="align-items-center" style={{ width: "100%" }}>
+          <MDBCard className="align-items-center mb-2" style={{ width: "100%" }}>
             <Header />
             <MDBTypography className="mt-2 mb-4" tag="h4" variant="display-4">
               Submitted Surveys
             </MDBTypography>
             {submittedSurveys.length && submittedSurveys.map((x, index) => (
               <>
-                <MDBCard className="mb-2" style={{ width: "95%" }}>
+                <MDBCard className="mb-4" style={{ width: "95%" }}>
                   <MDBCardTitle className="mt-1">{x.name}</MDBCardTitle>
                   <MDBCardBody className="p-1 mb-1">
                     {x.elements.map((x, index) => (

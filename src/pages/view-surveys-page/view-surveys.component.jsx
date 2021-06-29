@@ -50,7 +50,7 @@ const ViewSurveys = () => {
             {surveys.length &&
               surveys.map((x, index) => (
                 <>
-                  <MDBCard className="mb-2" style={{ width: "95%" }}>
+                  <MDBCard className="mb-4" style={{ width: "95%" }}>
                     <MDBCardTitle className="mt-1">{x.name}</MDBCardTitle>
                     <MDBCardBody className="p-1 mb-1">
                       <Link

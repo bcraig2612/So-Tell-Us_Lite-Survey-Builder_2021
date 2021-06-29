@@ -55,7 +55,7 @@ const UserAccount = () => {
     localStorage.setItem("account", JSON.stringify(account));
     history.push("/view-surveys");
   };
-  console.log(account);
+
   return (
     <>
       <MDBContainer>

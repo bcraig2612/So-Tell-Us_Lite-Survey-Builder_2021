@@ -42,10 +42,8 @@ const ViewSurvey = () => {
       }
     });
   }, []);
-  console.log(survey);
 
   const handleAnswerInput = (e, index) => {
-    console.log(e, index);
     let stateCopy = answers;
 
     stateCopy.elements[index].answer = e;

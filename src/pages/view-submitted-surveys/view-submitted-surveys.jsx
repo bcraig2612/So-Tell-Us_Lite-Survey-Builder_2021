@@ -28,8 +28,6 @@ const SubmittedSurveys = () => {
 
   }, []);
 
-  console.log(submittedSurveys);
-
   return (
     <MDBContainer>
       <MDBRow center>
